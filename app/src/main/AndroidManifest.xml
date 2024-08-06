@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -28,19 +28,21 @@
 
         <!-- Actividades -->
         <activity
-            android:name="com.example.maprealtime.MapsScreen"
-            android:exported="false" />
+            android:name="com.example.maprealtime.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name="com.example.maprealtime.ResetPassword"
-            android:exported="false" />
-        <activity
-            android:name="com.example.maprealtime.LocationScreen"
+            android:name="com.example.maprealtime.LoginScreen"
             android:exported="false" />
         <activity
             android:name="com.example.maprealtime.RegisterUser"
             android:exported="false" />
         <activity
-            android:name="com.example.maprealtime.LoginScreen"
+            android:name="com.example.maprealtime.LocationScreen"
             android:exported="false" />
         <activity
             android:name="com.example.maprealtime.UsersScreen"
@@ -49,13 +51,11 @@
             android:name="com.example.maprealtime.TerrenosHistorial"
             android:exported="false" />
         <activity
-            android:name="com.example.maprealtime.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name="com.example.maprealtime.ResetPassword"
+            android:exported="false" />
+        <activity
+            android:name="com.example.maprealtime.MapsScreen"
+            android:exported="false" />
 
         <!-- Servicio -->
         <service

@@ -1,6 +1,10 @@
+// build.gradle.kts (en el directorio app)
+
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.android.application")
+    id("com.google.gms.google-services")
+    kotlin("android") // Añadido para soporte de Kotlin
+    kotlin("kapt") // Añadido si estás utilizando KAPT para procesamiento de anotaciones
 }
 
 android {
@@ -50,7 +54,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,6 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +70,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Firebase dependencies
+    implementation("com.google.firebase:firebase-auth:21.3.0")
+    implementation("com.google.firebase:firebase-database:20.1.0")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 }
