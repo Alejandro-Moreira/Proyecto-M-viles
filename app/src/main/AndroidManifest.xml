@@ -24,7 +24,7 @@
         <!-- API Key de Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AQUI INGRESA TUS CREDENCIALES DE LA API DE GOOGLE" />
+            android:value="AIzaSyAL4Zzj2GlOigHoNogUyCV1WPlKLKEbMmY" />
 
         <!-- Actividades -->
         <activity
