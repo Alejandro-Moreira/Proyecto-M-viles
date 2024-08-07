@@ -35,7 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Actividades existentes -->
         <activity
             android:name="activities.LoginActivity"
             android:exported="false" />
@@ -48,6 +47,10 @@
         <activity
             android:name="activities.AdminActivity"
             android:exported="false" />
+        <activity
+            android:name="activities.ForgotPasswordActivity"
+            android:exported="false" />
+
         <!-- Servicio -->
         <service
             android:name="com.example.maprealtime.ServicioMaps"

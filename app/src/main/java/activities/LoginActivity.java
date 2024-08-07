@@ -25,7 +25,7 @@ import models.User;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
-    private Button loginButton, registerButton;
+    private Button loginButton, registerButton, forgotPasswordButton;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -42,9 +42,10 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.register_button);
+        forgotPasswordButton = findViewById(R.id.forgot_password_button);
         progressBar = findViewById(R.id.progressBar);
 
-        // Boton de inicio de sesión
+        // Botón de inicio de sesión
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    emailEditText.setError("Correo electronico es requerido");
+                    emailEditText.setError("Correo electrónico es requerido");
                     return;
                 }
 
@@ -91,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            }
+        });
+
+        // Botón que lleva a la ventana de recuperación de contraseña
+        forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
             }
         });
     }
