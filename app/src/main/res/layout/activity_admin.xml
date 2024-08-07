@@ -8,7 +8,7 @@
         android:id="@+id/manageUsersButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Manage Users"
+        android:text="Administrar usuarios"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
@@ -16,7 +16,7 @@
         android:id="@+id/viewStatisticsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Statistics"
+        android:text="Ver estadísticas"
         android:layout_below="@id/manageUsersButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
@@ -25,7 +25,7 @@
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="Ajustes"
         android:layout_below="@id/viewStatisticsButton"
         android:layout_centerHorizontal="true"/>
 

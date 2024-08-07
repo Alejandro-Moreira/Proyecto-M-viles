@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.maprealtime.R;
+
 public class AdminActivity extends AppCompatActivity {
 
     private Button manageUsersButton;
@@ -14,7 +16,7 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin); // Asegúrate de tener un layout llamado activity_admin.xml
+        setContentView(R.layout.activity_admin);
 
         // Inicializar botones
         manageUsersButton = findViewById(R.id.manageUsersButton);
@@ -23,18 +25,15 @@ public class AdminActivity extends AppCompatActivity {
 
         // Configurar listeners para los botones
         manageUsersButton.setOnClickListener(v -> {
-            // Aquí puedes iniciar una nueva actividad o realizar alguna acción relacionada con la gestión de usuarios
-            Toast.makeText(this, "Manage Users clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Administrar usuarios", Toast.LENGTH_SHORT).show();
         });
 
         viewStatisticsButton.setOnClickListener(v -> {
-            // Aquí puedes iniciar una nueva actividad o realizar alguna acción relacionada con la visualización de estadísticas
-            Toast.makeText(this, "View Statistics clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ver estadísticas", Toast.LENGTH_SHORT).show();
         });
 
         settingsButton.setOnClickListener(v -> {
-            // Aquí puedes iniciar una nueva actividad o realizar alguna acción relacionada con la configuración
-            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show();
         });
     }
 }

@@ -28,35 +28,26 @@
 
         <!-- Actividades -->
         <activity
-            android:name="com.example.maprealtime.MainActivity"
+            android:name="activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Actividades existentes -->
         <activity
-            android:name="com.example.maprealtime.LoginScreen"
+            android:name="activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.maprealtime.RegisterUser"
+            android:name="activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.maprealtime.LocationScreen"
+            android:name="activities.MapsActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.maprealtime.UsersScreen"
+            android:name="activities.AdminActivity"
             android:exported="false" />
-        <activity
-            android:name="com.example.maprealtime.TerrenosHistorial"
-            android:exported="false" />
-        <activity
-            android:name="com.example.maprealtime.ResetPassword"
-            android:exported="false" />
-        <activity
-            android:name="com.example.maprealtime.MapsScreen"
-            android:exported="false" />
-
         <!-- Servicio -->
         <service
             android:name="com.example.maprealtime.ServicioMaps"
