@@ -3,21 +3,42 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logger/logger.dart';
 
-final logger =Logger();
+final logger = Logger();
+
 class UserManagementPage extends StatefulWidget {
   const UserManagementPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _UserManagementPageState createState() => _UserManagementPageState();
 }
 
 class _UserManagementPageState extends State<UserManagementPage> {
   @override
+  void initState() {
+    super.initState();
+    _checkAuthentication();
+  }
+
+  Future<void> _checkAuthentication() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      Navigator.of(context).pushReplacementNamed('/login'); // Redirige al login si no está autenticado
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Administrar Usuarios'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              _showAddUserDialog(context);
+            },
+          ),
+        ],
       ),
       body: _buildUserList(),
     );
@@ -38,20 +59,31 @@ class _UserManagementPageState extends State<UserManagementPage> {
           itemBuilder: (context, index) {
             var user = users[index].data() as Map<String, dynamic>;
             String userId = users[index].id;
+            bool isActive = user['active'];
 
             return ListTile(
               title: Text(user['email']),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.red),
-                onPressed: () async {
-                  bool? confirm = await _confirmDeletion(context);
-                  if (confirm == true) {
-                    // ignore: use_build_context_synchronously
-                    await _deleteUser(userId, context);
-                    // Forzar actualización
-                    setState(() {});
-                  }
-                },
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(isActive ? Icons.remove_circle : Icons.add_circle, color: isActive ? Colors.red : Colors.green),
+                    onPressed: () async {
+                      await _toggleUserStatus(userId, isActive);
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () async {
+                      bool? confirm = await _confirmDeletion(context);
+                      if (confirm == true) {
+                        await _deleteUser(userId, context);
+                        // Forzar actualización
+                        setState(() {});
+                      }
+                    },
+                  ),
+                ],
               ),
             );
           },
@@ -95,7 +127,6 @@ class _UserManagementPageState extends State<UserManagementPage> {
         logger.i('Usuario eliminado de Firebase Auth');
       }
 
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Usuario eliminado exitosamente.'),
@@ -104,7 +135,6 @@ class _UserManagementPageState extends State<UserManagementPage> {
     } catch (e) {
       // Manejo de errores, puedes mostrar un mensaje al usuario
       logger.i('Error al eliminar el usuario: $e');
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Error al eliminar el usuario.'),
@@ -123,6 +153,101 @@ class _UserManagementPageState extends State<UserManagementPage> {
     } catch (e) {
       logger.i('Error al obtener el usuario por UID: $e');
       return null;
+    }
+  }
+
+  Future<void> _toggleUserStatus(String userId, bool isActive) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({'active': !isActive});
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Estado del usuario actualizado.'),
+        ),
+      );
+    } catch (e) {
+      logger.i('Error al actualizar el estado del usuario: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error al actualizar el estado del usuario.'),
+        ),
+      );
+    }
+  }
+
+  void _showAddUserDialog(BuildContext context) {
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Agregar Usuario'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(labelText: 'Correo'),
+              ),
+              TextField(
+                controller: _passwordController,
+                decoration: const InputDecoration(labelText: 'Contraseña'),
+                obscureText: true,
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Agregar'),
+              onPressed: () async {
+                await _addUser(
+                  _emailController.text,
+                  _passwordController.text,
+                  context,
+                );
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _addUser(String email, String password, BuildContext context) async {
+    try {
+      // Crear el usuario en Firebase Auth
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Agregar el usuario a Firestore en la colección 'users'
+      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        'email': email,
+        'role': 'Usuario', // Rol predeterminado
+        'active': true,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Usuario agregado exitosamente.'),
+        ),
+      );
+    } catch (e) {
+      logger.i('Error al agregar el usuario: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error al agregar el usuario.'),
+        ),
+      );
     }
   }
 }
