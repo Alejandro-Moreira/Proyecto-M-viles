@@ -7,7 +7,7 @@ import '../pages/login/login.dart';
 import '../pages/admin/admin.dart'; 
 
 class AuthService {
-  Future<void> signup({
+  Future<bool> signup({
     required String email,
     required String password,
     required String role,
@@ -22,9 +22,6 @@ class AuthService {
       String collectionName = role == 'Administrador' ? 'administradores' : 'users';
       String uid = userCredential.user!.uid;
 
-      // Reemplaza caracteres no permitidos en el correo electrónico
-      //String documentId = email.replaceAll(RegExp(r'[^\w\s]+'), '_');
-
       await FirebaseFirestore.instance
           .collection(collectionName)
           .doc(uid)
@@ -38,7 +35,6 @@ class AuthService {
       // Redirige basado en el rol
       if (role == 'Administrador') {
         Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => const AdminMap(),
@@ -46,13 +42,14 @@ class AuthService {
         );
       } else {
         Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => const Home(),
           ),
         );
       }
+
+      return true; // Registro exitoso
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
@@ -68,6 +65,7 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 14.0,
       );
+      return false; // Error al registrar
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Error al registrar: $e',
@@ -77,6 +75,7 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 14.0,
       );
+      return false; // Error al registrar
     }
   }
 
@@ -86,23 +85,20 @@ class AuthService {
     required BuildContext context,
   }) async {
     try {
-      // ignore: unused_local_variable
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      String documentId = email.replaceAll(RegExp(r'[^\w\s]+'), '_');
-
-      // Obtiene el rol del usuario desde Firestore
-      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(documentId).get();
-      DocumentSnapshot adminDoc = await FirebaseFirestore.instance.collection('administradores').doc(documentId).get();
+      String uid = userCredential.user!.uid;
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      DocumentSnapshot adminDoc = await FirebaseFirestore.instance.collection('administradores').doc(uid).get();
 
       String role = '';
-      if (userDoc.exists) {
-        role = 'Usuario';
-      } else if (adminDoc.exists) {
+      if (adminDoc.exists) {
         role = 'Administrador';
+      } else if (userDoc.exists) {
+        role = 'Usuario';
       }
 
       await Future.delayed(const Duration(seconds: 1));
@@ -110,26 +106,33 @@ class AuthService {
       // Redirige basado en el rol
       if (role == 'Administrador') {
         Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => const AdminMap(),
           ),
         );
-      } else {
+      } else if (role == 'Usuario') {
         Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => const Home(),
           ),
+        );
+      } else {
+        Fluttertoast.showToast(
+          msg: 'Rol de usuario no encontrado',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Colors.black54,
+          textColor: Colors.white,
+          fontSize: 14.0,
         );
       }
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
         message = 'El correo electrónico no se encuentra registrado.';
-      } else if (e.code == 'invalid-credential') {
+      } else if (e.code == 'wrong-password') {
         message = 'Contraseña incorrecta.';
       }
       Fluttertoast.showToast(
@@ -158,7 +161,6 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
     await Future.delayed(const Duration(seconds: 1));
     Navigator.pushReplacement(
-      // ignore: use_build_context_synchronously
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => Login(),
