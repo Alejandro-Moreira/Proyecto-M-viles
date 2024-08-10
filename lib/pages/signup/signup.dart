@@ -79,12 +79,15 @@ class _SignupState extends State<Signup> {
                 context: context,
                 text: 'Regístrate',
                 onPressed: () async {
-                  await AuthService().signup(
+                  bool success = await AuthService().signup(
                     email: _emailController.text,
                     password: _passwordController.text,
                     context: context,
                     role: _selectedRole,
                   );
+                  if (success) {
+                    _showSuccessDialog(context);
+                  }
                 },
               ),
             ],
@@ -154,9 +157,11 @@ class _SignupState extends State<Signup> {
       style: GoogleFonts.raleway(
         textStyle: const TextStyle(
           color: Colors.black,
+          fontWeight: FontWeight.normal,
           fontSize: 16,
         ),
       ),
+      dropdownColor: Colors.white,
     );
   }
 
@@ -164,58 +169,99 @@ class _SignupState extends State<Signup> {
     required BuildContext context,
     required String text,
     required VoidCallback onPressed,
-    Color color = const Color(0xff0D6EFD),
   }) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 1, 75, 160),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
         ),
-        minimumSize: const Size(double.infinity, 60),
-        elevation: 0,
-        textStyle: const TextStyle(color: Colors.white),
+        child: Text(
+          text,
+          style: GoogleFonts.raleway(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ),
       ),
-      onPressed: onPressed,
-      child: Text(text, style: const TextStyle(color: Colors.white)),
     );
   }
 
   Widget _signin(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: RichText(
-        textAlign: TextAlign.center,
-        text: TextSpan(
-          children: [
-            const TextSpan(
-              text: "¿Ya tienes una cuenta? ",
-              style: TextStyle(
-                color: Color(0xff6A6A6A),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '¿Ya tienes una cuenta?',
+            style: GoogleFonts.raleway(
+              textStyle: const TextStyle(
+                color: Colors.black,
                 fontWeight: FontWeight.normal,
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
-            TextSpan(
-              text: "Inicia sesión",
-              style: const TextStyle(
-                color: Color(0xff1A1D1E),
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => Login(),
+                ),
+              );
+            },
+            child: Text(
+              'Inicia sesión',
+              style: GoogleFonts.raleway(
+                textStyle: const TextStyle(
+                  color: Color(0xffFF5C5C),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
               ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Login(),
-                    ),
-                  );
-                },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Registro exitoso'),
+          content: const Text('Se ha registrado correctamente.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Login(),
+                  ),
+                );
+              },
+              child: const Text('Aceptar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
