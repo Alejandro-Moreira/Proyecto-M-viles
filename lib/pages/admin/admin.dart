@@ -1,7 +1,4 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -14,7 +11,6 @@ class AdminMap extends StatefulWidget {
   const AdminMap({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _AdminMapState createState() => _AdminMapState();
 }
 
@@ -99,7 +95,7 @@ class _AdminMapState extends State<AdminMap> {
 
       _isLoading = false;
       _isMapReady = true;
-      
+
       print("Marcadores actualizados: ${_markers.length}");
     });
   }
@@ -118,7 +114,6 @@ class _AdminMapState extends State<AdminMap> {
     }
 
     return polylines;
-    // ... (sin cambios)
   }
 
   double _calculatePolygonArea(List<LatLng> points) {
@@ -141,7 +136,6 @@ class _AdminMapState extends State<AdminMap> {
     }
 
     return area.abs() / 2.0;
-    // ... (sin cambios)
   }
 
   Point _toMeters(double lat, double lon) {
@@ -149,8 +143,6 @@ class _AdminMapState extends State<AdminMap> {
     double x = R * lon * pi / 180.0;
     double y = R * log(tan((90.0 + lat) * pi / 360.0));
     return Point(x, y);
-
-    // ... (sin cambios)
   }
 
   @override
@@ -158,62 +150,32 @@ class _AdminMapState extends State<AdminMap> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Mapa de Administrador'),
+        title: const Text('MapRealTime'),
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu, color: Colors.black),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Menú de Administrador',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Cerrar Sesión'),
-              onTap: () async {
-                await AuthService().signout(context: context);
-              },
-            ),
-            ListTile(
-              title: const Text("Administrar usuarios"),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const UserManagementPage(),
-                ));
-              },
-            ),
-          ],
-        ),
-        // ... (sin cambios)
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.manage_accounts, color: Colors.black),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const UserManagementPage(),
+              ));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.black),
+            onPressed: () async {
+              await AuthService().signout(context: context);
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
           FlutterMap(
             mapController: _mapController,
             options: const MapOptions(
-              // ignore: deprecated_member_use
               center: LatLng(-1.831239, -78.183406),
-              // ignore: deprecated_member_use
               zoom: 8.0,
             ),
             children: [
@@ -239,7 +201,6 @@ class _AdminMapState extends State<AdminMap> {
                     child: const Icon(Icons.add),
                     onPressed: () {
                       setState(() {
-                        // ignore: deprecated_member_use
                         _mapController.move(_mapController.center, _mapController.zoom + 1);
                       });
                     },
@@ -251,7 +212,6 @@ class _AdminMapState extends State<AdminMap> {
                     child: const Icon(Icons.remove),
                     onPressed: () {
                       setState(() {
-                        // ignore: deprecated_member_use
                         _mapController.move(_mapController.center, _mapController.zoom - 1);
                       });
                     },
