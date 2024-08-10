@@ -44,37 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBdkDnUJ0wvT4IbKZW6IiiZ2JD9vj2BvJU',
-    appId: '1:588917733063:web:6eb785d65086cc67e8b0e2',
-    messagingSenderId: '588917733063',
-    projectId: 'flutter-chat-c70f4',
-    authDomain: 'flutter-chat-c70f4.firebaseapp.com',
-    storageBucket: 'flutter-chat-c70f4.appspot.com',
+    apiKey: 'AIzaSyAsabJaYdyQOH2oahYRXRhY1KAE5LSZQ8Q',
+    appId: '1:103165477696:web:6eb785d65086cc67e8b0e2',
+    messagingSenderId: '103165477696',
+    projectId: 'maprealtime-2e8d8',
+    authDomain: 'maprealtime-2e8d8.firebaseapp.com',
+    storageBucket: 'maprealtime-2e8d8.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCXrbxxFSGad9EIS72ybP9FCeW8iAu4L2Y',
-    appId: '1:588917733063:android:a4441d349013174ee8b0e2',
-    messagingSenderId: '588917733063',
-    projectId: 'flutter-chat-c70f4',
-    storageBucket: 'flutter-chat-c70f4.appspot.com',
+    apiKey: 'AIzaSyAsabJaYdyQOH2oahYRXRhY1KAE5LSZQ8Q',
+    appId: '1:103165477696:android:e4018d8459f4f2d55530a5',
+    messagingSenderId: '103165477696',
+    projectId: 'maprealtime-2e8d8',
+    storageBucket: 'maprealtime-2e8d8.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDlJznde-E-5RO0B0l0709qlKLo4rUYMOA',
-    appId: '1:588917733063:ios:66666bfa5b0410f2e8b0e2',
-    messagingSenderId: '588917733063',
-    projectId: 'flutter-chat-c70f4',
-    storageBucket: 'flutter-chat-c70f4.appspot.com',
-    iosBundleId: 'com.example.proyectoFinal',
+    apiKey: 'AIzaSyAsabJaYdyQOH2oahYRXRhY1KAE5LSZQ8Q',
+    appId: '1:103165477696:ios:66666bfa5b0410f2e8b0e2',
+    messagingSenderId: '103165477696',
+    projectId: 'maprealtime-2e8d8',
+    storageBucket: 'maprealtime-2e8d8.appspot.com',
+    iosBundleId: 'com.example.maprealtime',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBdkDnUJ0wvT4IbKZW6IiiZ2JD9vj2BvJU',
-    appId: '1:588917733063:web:5dd580134bf46b30e8b0e2',
-    messagingSenderId: '588917733063',
-    projectId: 'flutter-chat-c70f4',
-    authDomain: 'flutter-chat-c70f4.firebaseapp.com',
-    storageBucket: 'flutter-chat-c70f4.appspot.com',
+    apiKey: 'AIzaSyAsabJaYdyQOH2oahYRXRhY1KAE5LSZQ8Q',
+    appId: '1:103165477696:web:5dd580134bf46b30e8b0e2',
+    messagingSenderId: '103165477696',
+    projectId: 'maprealtime-2e8d8',
+    authDomain: 'maprealtime-2e8d8.firebaseapp.com',
+    storageBucket: 'maprealtime-2e8d8.appspot.com',
   );
 }
