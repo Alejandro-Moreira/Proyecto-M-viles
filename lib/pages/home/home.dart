@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomeState createState() => _HomeState();
 }
 
@@ -29,6 +28,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    _checkAuthentication();  // Verificar autenticación
     _checkLocationPermission();
     _getCurrentLocation();
     _startListeningToLocationUpdates();
@@ -42,13 +42,20 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
+  Future<void> _checkAuthentication() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      Navigator.of(context).pushReplacementNamed('/login'); // Redirigir al login si no está autenticado
+    }
+  }
+
   Future<void> _checkLocationPermission() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         setState(() {
-          _errorMessage = 'Los permisos de ubicación fueron denegados';
+          _errorMessage = 'Los permisos de ubicación no fueron permitidos';
         });
       }
     }
@@ -64,7 +71,6 @@ class _HomeState extends State<Home> {
       (Position position) {
         _updateUserLocation(position);
         setState(() {
-          // ignore: deprecated_member_use
           _mapController.move(LatLng(position.latitude, position.longitude), _mapController.zoom);
         });
       },
@@ -158,10 +164,10 @@ class _HomeState extends State<Home> {
       LatLng p1 = points[j];
       LatLng p2 = points[i];
 
-      double x1 = _toMeters(p1.latitude, p1.longitude).x;
-      double y1 = _toMeters(p1.latitude, p1.longitude).y;
-      double x2 = _toMeters(p2.latitude, p2.longitude).x;
-      double y2 = _toMeters(p2.latitude, p2.longitude).y;
+      double x1 = _toMeters(p1.latitude, p1.longitude).x.toDouble();
+      double y1 = _toMeters(p1.latitude, p1.longitude).y.toDouble();
+      double x2 = _toMeters(p2.latitude, p2.longitude).x.toDouble();
+      double y2 = _toMeters(p2.latitude, p2.longitude).y.toDouble();
 
       area += (x1 * y2) - (x2 * y1);
       j = i;
@@ -216,53 +222,24 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Mapa'),
+        title: const Text('MapRealTime'),
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu, color: Colors.black),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.exit_to_app, color: Colors.black),
+            onPressed: () async {
+              await AuthService().signout(context: context);
+            },
+          ),
+        ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Menú',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Cerrar Sesión'),
-              onTap: () async {
-                await AuthService().signout(context: context);
-              },
-            ),
-          ],
-        ),
-      ),
-
       body: Stack(
         children: [
           GestureDetector(
             onTapUp: (TapUpDetails details) {
               final RenderBox renderBox = context.findRenderObject() as RenderBox;
               final point = renderBox.globalToLocal(details.globalPosition);
-              // ignore: deprecated_member_use
               final latlng = _mapController.pointToLatLng(CustomPoint(point.dx, point.dy));
               setState(() {
                 _markers.add(Marker(
@@ -276,11 +253,9 @@ class _HomeState extends State<Home> {
             child: FlutterMap(
               mapController: _mapController,
               options: MapOptions(
-                // ignore: deprecated_member_use
                 center: _markers.isNotEmpty 
                     ? _markers.first.point 
                     : const LatLng(0, 0),
-                // ignore: deprecated_member_use
                 zoom: 13.0,
               ),
               children: [
@@ -304,7 +279,6 @@ class _HomeState extends State<Home> {
                   child: const Icon(Icons.add),
                   onPressed: () {
                     setState(() {
-                      // ignore: deprecated_member_use
                       _mapController.move(_mapController.center, _mapController.zoom + 1);
                     });
                   },
@@ -316,7 +290,6 @@ class _HomeState extends State<Home> {
                   child: const Icon(Icons.remove),
                   onPressed: () {
                     setState(() {
-                      // ignore: deprecated_member_use
                       _mapController.move(_mapController.center, _mapController.zoom - 1);
                     });
                   },
@@ -324,33 +297,10 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          Positioned(
-            top: 20,
-            right: 20,
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Área: ${_area.toStringAsFixed(2)} m²'),
-            ),
-          ),
-          if (_isLoading)
-            const Center(child: CircularProgressIndicator()),
-          if (_errorMessage.isNotEmpty)
-            Center(child: Text(_errorMessage, style: const TextStyle(color: Colors.red))),
+          if (_isLoading) const Center(child: CircularProgressIndicator()),
+          if (_errorMessage.isNotEmpty) Center(child: Text(_errorMessage, style: const TextStyle(color: Colors.red))),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: "btn3",
-        onPressed: _getCurrentLocation,
-        child: const Icon(Icons.my_location),
       ),
     );
   }
-}
-
-class Point {
-  final double x;
-  final double y;
-
-  Point(this.x, this.y);
 }
