@@ -1,6 +1,6 @@
 {
-    "name": "proyecto_final",
-    "short_name": "proyecto_final",
+    "name": "MineroMap",
+    "short_name": "MineroMap",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#9bafae",
