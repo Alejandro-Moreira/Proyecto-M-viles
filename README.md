@@ -1,5 +1,9 @@
 # **MapRealTime App**
-
+## **Integrantes**
+-MORERIRA ALEJANDRO 
+-NOVILLO ISMAEL
+-VALENZUELA JARED
+-YEPEZ JOSHEP
 
  
 ## **Índice**
