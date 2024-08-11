@@ -5,9 +5,9 @@
 1. Descripción del Proyecto
 2. Características
 3. Servicios
-    - [AuthService]
-        - [Métodos]
-    - [CalculationService]
+    - AuthService
+        - Métodos
+    - CalculationService
         - [Métodos]
     - [LocationService]
         - [Métodos]
