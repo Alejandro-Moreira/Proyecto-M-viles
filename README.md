@@ -244,21 +244,30 @@ Maneja la gestión de ubicaciones de usuarios.
 Base de datos 
 
  Autentificacion 
+ 
 ![image](https://github.com/user-attachments/assets/49bc1ac0-b555-4f4e-b686-4cead24047ad)
+
  Admin
+ 
 ![image](https://github.com/user-attachments/assets/0d2a2cd1-a110-4b85-8b96-4ffb5b048a07)
+
  Usuarios
+ 
  ![image](https://github.com/user-attachments/assets/41284480-dcce-4999-962c-1691ecf9be71)
+ 
 
 Pantalla para usuarios (Topografos)
+
 ![image](https://github.com/user-attachments/assets/eb52e7ab-4410-4b82-a1bb-f62742024268)
 
 
 Pantalla para administradores 
+
 ![image](https://github.com/user-attachments/assets/6d1d0c42-1132-40b0-8100-71465ae47803)
 
 Despliegue en la web 
 
 Despliegue en tienda de aplicaciones 
+
 ![image](https://github.com/user-attachments/assets/739525c2-4d7d-4495-8a35-935c4efb3553)
 
