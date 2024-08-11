@@ -1,31 +1,230 @@
-# Proyecto-Móviles
-MapRealTime es una aplicación desarrollada en Flutter que ofrece funcionalidades avanzadas para la gestión y visualización de terrenos, así como para el seguimiento en tiempo real de topógrafos. A continuación se describen las principales características y funcionalidades de la aplicación.
+# **MapRealTime App**
 
-## Integrantes
-* Alejandro Moreira
-* Ismael Novillo
-* Jared Valenzuela
-* Joseph Yépez
+## **Índice**
 
-### Login para Validación de Usuarios 
-La aplicación permite a los usuarios iniciar sesión utilizando Firebase Authentication. El proceso de inicio de sesión incluye validación de credenciales y redirección según el rol del usuario. Los roles disponibles son 'Usuario' y 'Administrador', y se manejan las redirecciones apropiadas después del inicio de sesión.
+1. [Descripción del Proyecto]
+2. [Características]
+3. [Servicios]
+    - [AuthService]
+        - [Métodos]
+    - [CalculationService]
+        - [Métodos]
+    - [ChatService]
+        - [Métodos]
+4. [Instalación y Configuración]
+5. [Uso]
+    - [AuthService]
+    - [CalculationService]
+    - [ChatService]
+6. [Capturas de Pantalla]
+7. [Contribuciones]
+8. [Licencia]
 
-### Sistema de Administración Web/Móvil 
-El sistema de administración permite gestionar usuarios y administradores tanto desde la web como desde la aplicación móvil. Las funcionalidades incluyen:
+## **Descripción del Proyecto**
 
-* Agregar nuevos usuarios.
-* Eliminar usuarios.
-* Desactivar cuentas de usuarios.
+**MapRealTime** es una aplicación diseñada para proporcionar funcionalidades de mensajería y cálculo basado en la geolocalización. Utiliza Firebase para la autenticación, la gestión de mensajes y el almacenamiento en tiempo real de datos. El administrador puede realizar cálculos sobre distancias y áreas utilizando ubicaciones geográficas de acuerdo a  la ubicación de cada Minero.
 
-### Visualización de Terrenos y sus Características 
-La aplicación permite visualizar terrenos con detalles clave, incluyendo:
+## **Características**
 
-* Ubicación del terreno en el mapa.
-* Polígono definido que representa el área del terreno.
-* Área del terreno calculada automáticamente.
+- **Autenticación de Usuario:** Inicio de sesión y cierre de sesión con diferentes roles (Usuario o Administrador).
+- **Mensajería en Tiempo Real:** Envío y recepción de ubicaciones geográficas.
+- **Cálculo Geoespacial:** Cálculo de distancias entre dos ubicaciones y perímetros y áreas de polígonos formados por múltiples ubicaciones.
+- **Actualización de Ubicación:** Actualización y gestión de ubicaciones de los usuarios.
 
-### Geolocalización en Tiempo Real 
-La geolocalización en tiempo real se implementa utilizando la API de Google Maps. La aplicación actualiza automáticamente la posición de los topógrafos en el mapa y genera enlaces de geolocalización conforme cambian sus posiciones. Esto proporciona una visualización precisa y actualizada de la ubicación de los topógrafos.
+## **Servicios**
 
-### Cálculo del Área del Polígono
-La aplicación incluye una funcionalidad para calcular el área de polígonos que representan terrenos. El cálculo se realiza de manera automática utilizando algoritmos de geometría y se muestra el área calculada en la interfaz de usuario.
+### **AuthService**
+
+Gestiona la autenticación de los usuarios y su redirección según su rol.
+
+### **Métodossignin**
+
+Inicia sesión con las credenciales proporcionadas.
+
+```dart
+dartCopiar código
+Future<void> signin({
+  required String email,
+  required String password,
+  required BuildContext context,
+});
+```
+
+- **signout**
+    
+    Cierra la sesión del usuario actual.
+    
+    ```dart
+    Future<void> signout({
+      required BuildContext context,
+    });
+    ```
+    
+
+### **CalculationService**
+
+Realiza cálculos basados en ubicaciones de usuarios, incluyendo distancias, perímetros y áreas.
+
+### **Métodos**
+
+- **calculate**Calcula distancia entre dos ubicaciones o perímetro y área de un polígono.
+    
+    ```dart
+    Future<Map<String, dynamic>> calculate();
+    ```
+    
+
+### **ChatService**
+
+Maneja la gestión de ubicaciones de usuarios.
+
+### **Métodos**
+
+- **getMessages**
+    
+    Obtiene un flujo de mensajes ordenados por timestamp.
+    
+    ```dart
+    dartCopiar código
+    Stream<QuerySnapshot> getMessages();
+    ```
+    
+- **sendMessage**
+    
+    Envía un mensaje a la base de datos de Firebase, con la opción de incluir una ubicación.
+    
+    ```dart
+    Future<void> sendMessage(
+      String message,
+      String userId, {
+      bool isLocation = false,
+      GeoPoint? location,
+    });
+    ```
+    
+- **deleteMessage**
+    
+    Elimina un mensaje específico del chat.
+    
+    ```dart
+    Future<void> deleteMessage(String messageId);
+    ```
+    
+- **updateUserLocation**
+    
+    Actualiza la ubicación de un usuario en la base de datos.
+    
+    ```dart
+    Future<void> updateUserLocation(String userId, GeoPoint location);
+    ```
+    
+
+## **Instalación y Configuración**
+
+1. **Clonar el Repositorio:**
+    
+    ```bash
+    git clone https://github.com/Alejandro-Moreira/Proyecto-M-viles.git
+    ```
+    
+2. **Navegar al Directorio del Proyecto:**
+    
+    ```bash
+    cd Proyecto-M-viles
+    ```
+    
+3. **Instalar Dependencias:**
+    
+    ```bash
+    flutter pub get
+    ```
+    
+4. **Configurar Firebase:**
+    - Sigue la guía de configuración de Firebase para añadir tu archivo de configuración (`google-services.json` para Android o `GoogleService-Info.plist` para iOS).
+    - Asegúrate de haber configurado las reglas de seguridad adecuadas para Firestore y Authentication en la consola de Firebase.
+5. **Ejecutar la Aplicación:**
+    
+    ```bash
+    flutter run
+    ```
+    
+
+## **Uso**
+
+- **Inicio de Sesión:**
+    
+    ```dart
+    AuthService().signin(
+      email: 'example@example.com',
+      password: 'your_password',
+      context: context,
+    );
+    ```
+    
+- **Cierre de Sesión:**
+    
+    ```dart
+    AuthService().signout(
+      context: context,
+    );
+    ```
+    
+
+### **CalculationService**
+
+- **Calcular Distancias o Áreas:**
+    
+    ```dart
+    CalculationService().calculate().then((result) {
+      if (result['type'] == 'distance') {
+        print('Distance: ${result['value']} km');
+      } else if (result['type'] == 'area') {
+        print('Perimeter: ${result['perimeter']} km');
+        print('Area: ${result['area']} km²');
+      } else {
+        print(result['message']);
+      }
+    });
+    
+    ```
+    
+
+### **ChatService**
+
+- **Obtener Mensajes:**
+    
+    ```dart
+    ChatService().getMessages().listen((QuerySnapshot snapshot) {
+      // Manejar los mensajes recibidos
+    });
+    ```
+    
+- **Enviar Mensaje a la base de Datos de Firebase:**
+    
+    ```dart
+    dartCopiar código
+    ChatService().sendMessage(
+      'Hello World!',
+      'user123',
+      isLocation: true,
+      location: GeoPoint(37.7749, -122.4194),
+    );
+    ```
+    
+- **Eliminar Mensaje:**
+    
+    ```dart
+    ChatService().deleteMessage('messageId123');
+    ```
+    
+- **Actualizar Ubicación del Usuario:**
+    
+    ```dart
+    ChatService().updateUserLocation(
+      'user123',
+      GeoPoint(37.7749, -122.4194),
+    );
+    ```
+    
+
+## Capturas de pantalla
