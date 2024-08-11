@@ -8,11 +8,11 @@
     - AuthService
         - Métodos
     - CalculationService
-        - [Métodos]
-    - [LocationService]
-        - [Métodos]
-4. [Instalación y Configuración]
-5. [Uso]
+        - Métodos
+    - LocationService
+        - Métodos
+4. Instalación y Configuración
+5. Uso
     - [AuthService]
     - [CalculationService]
     - [ChatService]
