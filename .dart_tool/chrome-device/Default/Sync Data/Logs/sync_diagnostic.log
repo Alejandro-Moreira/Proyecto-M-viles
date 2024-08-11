@@ -22,3 +22,12 @@
 2024-08-09T19:08:29.167Z P:25984 T:9076] Commit::PostAndProcessResponse,Device Info: Success
 2024-08-09T19:08:29.167Z P:25984 T:9076] Commit::PostAndProcessResponse,User Consents: Success
 2024-08-09T19:14:12.980Z P:25984 T:16232] SyncServiceImpl::ResetEngine,Reason: 0
+2024-08-11T14:06:49.418Z P:16048 T:6304] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T14:06:50.365Z P:16048 T:8656] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T14:07:02.613Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T14:07:02.670Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T14:07:04.616Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T14:07:07.997Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T14:07:15.085Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T14:07:29.303Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T14:07:56.194Z P:16048 T:6304] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew

@@ -1,267 +1,267 @@
-import '/pages/login/login.dart';
-import '/services/auth_service.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import '/pages/login/login.dart';
+// import '/services/auth_service.dart';
+// import 'package:flutter/gestures.dart';
+// import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+// class Signup extends StatefulWidget {
+//   const Signup({super.key});
 
-  @override
-  _SignupState createState() => _SignupState();
-}
+//   @override
+//   _SignupState createState() => _SignupState();
+// }
 
-class _SignupState extends State<Signup> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  String _selectedRole = 'Usuario';
+// class _SignupState extends State<Signup> {
+//   final TextEditingController _emailController = TextEditingController();
+//   final TextEditingController _passwordController = TextEditingController();
+//   String _selectedRole = 'Usuario';
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 50,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    Text(
-                      'MapRealTime',
-                      style: GoogleFonts.raleway(
-                        textStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 32,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Regístrate',
-                      style: GoogleFonts.raleway(
-                        textStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40),
-              _buildTextField(
-                controller: _emailController,
-                label: 'Correo electrónico',
-                hintText: 'Ingrese su correo electrónico',
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                controller: _passwordController,
-                label: 'Contraseña',
-                hintText: 'Ingrese su contraseña',
-                obscureText: true,
-              ),
-              const SizedBox(height: 20),
-              _buildDropdown(),
-              const SizedBox(height: 30),
-              _buildButton(
-                context: context,
-                text: 'Regístrate',
-                onPressed: () async {
-                  bool success = await AuthService().signup(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                    context: context,
-                    role: _selectedRole,
-                  );
-                  if (success) {
-                    _showSuccessDialog(context);
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: _signin(context),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       resizeToAvoidBottomInset: true,
+//       appBar: AppBar(
+//         backgroundColor: Colors.transparent,
+//         elevation: 0,
+//         toolbarHeight: 50,
+//       ),
+//       body: SafeArea(
+//         child: SingleChildScrollView(
+//           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Center(
+//                 child: Column(
+//                   children: [
+//                     Text(
+//                       'MapRealTime',
+//                       style: GoogleFonts.raleway(
+//                         textStyle: const TextStyle(
+//                           color: Colors.black,
+//                           fontWeight: FontWeight.bold,
+//                           fontSize: 32,
+//                         ),
+//                       ),
+//                     ),
+//                     const SizedBox(height: 8),
+//                     Text(
+//                       'Regístrate',
+//                       style: GoogleFonts.raleway(
+//                         textStyle: const TextStyle(
+//                           color: Colors.black,
+//                           fontWeight: FontWeight.bold,
+//                           fontSize: 24,
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//               const SizedBox(height: 40),
+//               _buildTextField(
+//                 controller: _emailController,
+//                 label: 'Correo electrónico',
+//                 hintText: 'Ingrese su correo electrónico',
+//               ),
+//               const SizedBox(height: 20),
+//               _buildTextField(
+//                 controller: _passwordController,
+//                 label: 'Contraseña',
+//                 hintText: 'Ingrese su contraseña',
+//                 obscureText: true,
+//               ),
+//               const SizedBox(height: 20),
+//               _buildDropdown(),
+//               const SizedBox(height: 30),
+//               _buildButton(
+//                 context: context,
+//                 text: 'Regístrate',
+//                 onPressed: () async {
+//                   bool success = await AuthService().signup(
+//                     email: _emailController.text,
+//                     password: _passwordController.text,
+//                     context: context,
+//                     role: _selectedRole,
+//                   );
+//                   if (success) {
+//                     _showSuccessDialog(context);
+//                   }
+//                 },
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//       bottomNavigationBar: _signin(context),
+//     );
+//   }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    required String hintText,
-    bool obscureText = false,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.raleway(
-            textStyle: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.normal,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        TextField(
-          controller: controller,
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: const Color(0xffF7F7F9),
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(14),
-            ),
-            hintText: hintText,
-            hintStyle: const TextStyle(
-              color: Color(0xff6A6A6A),
-              fontWeight: FontWeight.normal,
-              fontSize: 14,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+//   Widget _buildTextField({
+//     required TextEditingController controller,
+//     required String label,
+//     required String hintText,
+//     bool obscureText = false,
+//   }) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           label,
+//           style: GoogleFonts.raleway(
+//             textStyle: const TextStyle(
+//               color: Colors.black,
+//               fontWeight: FontWeight.normal,
+//               fontSize: 16,
+//             ),
+//           ),
+//         ),
+//         const SizedBox(height: 8),
+//         TextField(
+//           controller: controller,
+//           obscureText: obscureText,
+//           decoration: InputDecoration(
+//             filled: true,
+//             fillColor: const Color(0xffF7F7F9),
+//             border: OutlineInputBorder(
+//               borderSide: BorderSide.none,
+//               borderRadius: BorderRadius.circular(14),
+//             ),
+//             hintText: hintText,
+//             hintStyle: const TextStyle(
+//               color: Color(0xff6A6A6A),
+//               fontWeight: FontWeight.normal,
+//               fontSize: 14,
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
 
-  Widget _buildDropdown() {
-    return DropdownButton<String>(
-      value: _selectedRole,
-      items: <String>['Usuario', 'Administrador'].map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-      onChanged: (String? newValue) {
-        setState(() {
-          _selectedRole = newValue!;
-        });
-      },
-      style: GoogleFonts.raleway(
-        textStyle: const TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.normal,
-          fontSize: 16,
-        ),
-      ),
-      dropdownColor: Colors.white,
-    );
-  }
+//   Widget _buildDropdown() {
+//     return DropdownButton<String>(
+//       value: _selectedRole,
+//       items: <String>['Usuario', 'Administrador'].map((String value) {
+//         return DropdownMenuItem<String>(
+//           value: value,
+//           child: Text(value),
+//         );
+//       }).toList(),
+//       onChanged: (String? newValue) {
+//         setState(() {
+//           _selectedRole = newValue!;
+//         });
+//       },
+//       style: GoogleFonts.raleway(
+//         textStyle: const TextStyle(
+//           color: Colors.black,
+//           fontWeight: FontWeight.normal,
+//           fontSize: 16,
+//         ),
+//       ),
+//       dropdownColor: Colors.white,
+//     );
+//   }
 
-  Widget _buildButton({
-    required BuildContext context,
-    required String text,
-    required VoidCallback onPressed,
-  }) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 1, 75, 160),
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-        ),
-        child: Text(
-          text,
-          style: GoogleFonts.raleway(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+//   Widget _buildButton({
+//     required BuildContext context,
+//     required String text,
+//     required VoidCallback onPressed,
+//   }) {
+//     return SizedBox(
+//       width: double.infinity,
+//       child: ElevatedButton(
+//         onPressed: onPressed,
+//         style: ElevatedButton.styleFrom(
+//           backgroundColor: const Color.fromARGB(255, 1, 75, 160),
+//           padding: const EdgeInsets.symmetric(vertical: 16),
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(14),
+//           ),
+//         ),
+//         child: Text(
+//           text,
+//           style: GoogleFonts.raleway(
+//             textStyle: const TextStyle(
+//               color: Colors.white,
+//               fontWeight: FontWeight.bold,
+//               fontSize: 16,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
 
-  Widget _signin(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '¿Ya tienes una cuenta?',
-            style: GoogleFonts.raleway(
-              textStyle: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.normal,
-                fontSize: 14,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => Login(),
-                ),
-              );
-            },
-            child: Text(
-              'Inicia sesión',
-              style: GoogleFonts.raleway(
-                textStyle: const TextStyle(
-                  color: Color(0xffFF5C5C),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+//   Widget _signin(BuildContext context) {
+//     return Container(
+//       padding: const EdgeInsets.all(16),
+//       decoration: const BoxDecoration(
+//         color: Colors.transparent,
+//         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+//       ),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(
+//             '¿Ya tienes una cuenta?',
+//             style: GoogleFonts.raleway(
+//               textStyle: const TextStyle(
+//                 color: Colors.black,
+//                 fontWeight: FontWeight.normal,
+//                 fontSize: 14,
+//               ),
+//             ),
+//           ),
+//           TextButton(
+//             onPressed: () {
+//               Navigator.pushReplacement(
+//                 context,
+//                 MaterialPageRoute(
+//                   builder: (BuildContext context) => Login(),
+//                 ),
+//               );
+//             },
+//             child: Text(
+//               'Inicia sesión',
+//               style: GoogleFonts.raleway(
+//                 textStyle: const TextStyle(
+//                   color: Color(0xffFF5C5C),
+//                   fontWeight: FontWeight.bold,
+//                   fontSize: 14,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
 
-  void _showSuccessDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Registro exitoso'),
-          content: const Text('Se ha registrado correctamente.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => Login(),
-                  ),
-                );
-              },
-              child: const Text('Aceptar'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
+//   void _showSuccessDialog(BuildContext context) {
+//     showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: const Text('Registro exitoso'),
+//           content: const Text('Se ha registrado correctamente.'),
+//           actions: [
+//             TextButton(
+//               onPressed: () {
+//                 Navigator.pushReplacement(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (BuildContext context) => Login(),
+//                   ),
+//                 );
+//               },
+//               child: const Text('Aceptar'),
+//             ),
+//           ],
+//         );
+//       },
+//     );
+//   }
+// }

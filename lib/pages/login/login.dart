@@ -87,7 +87,7 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
-      bottomNavigationBar: _signup(context),
+      // bottomNavigationBar: _signup(context),
     );
   }
 
@@ -163,48 +163,48 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _signup(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '¿No tienes una cuenta?',
-            style: GoogleFonts.raleway(
-              textStyle: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.normal,
-                fontSize: 14,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const Signup(),
-                ),
-              );
-            },
-            child: Text(
-              'Regístrate',
-              style: GoogleFonts.raleway(
-                textStyle: const TextStyle(
-                  color: Color(0xffFF5C5C),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _signup(BuildContext context) {
+  //   return Container(
+  //     padding: const EdgeInsets.all(16),
+  //     decoration: const BoxDecoration(
+  //       color: Colors.transparent,
+  //       borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+  //     ),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         Text(
+  //           '¿No tienes una cuenta?',
+  //           style: GoogleFonts.raleway(
+  //             textStyle: const TextStyle(
+  //               color: Colors.black,
+  //               fontWeight: FontWeight.normal,
+  //               fontSize: 14,
+  //             ),
+  //           ),
+  //         ),
+  //         // TextButton(
+  //         //   onPressed: () {
+  //         //     Navigator.pushReplacement(
+  //         //       context,
+  //         //       MaterialPageRoute(
+  //         //         builder: (BuildContext context) => const Signup(),
+  //         //       ),
+  //         //     );
+  //         //   },
+  //         //   child: Text(
+  //         //     'Regístrate',
+  //         //     style: GoogleFonts.raleway(
+  //         //       textStyle: const TextStyle(
+  //         //         color: Color(0xffFF5C5C),
+  //         //         fontWeight: FontWeight.bold,
+  //         //         fontSize: 14,
+  //         //       ),
+  //         //     ),
+  //         //   ),
+  //         // ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
