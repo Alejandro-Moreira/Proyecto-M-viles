@@ -28,7 +28,7 @@
 
 - **Autenticación de Usuario:** Inicio de sesión y cierre de sesión con diferentes roles (Usuario o Administrador).
 - **Mensajería en Tiempo Real:** Envío y recepción de ubicaciones geográficas.
-- **Cálculo Geoespacial:** Cálculo de distancias entre dos ubicaciones y perímetros y áreas de polígonos formados por múltiples ubicaciones.
+- **Cálculo Geoespacial:** Cálculo de distancias entre ubicaciones y perímetros y áreas de polígonos formados por múltiples ubicaciones.
 - **Actualización de Ubicación:** Actualización y gestión de ubicaciones de los usuarios.
 
 ## **Servicios**
