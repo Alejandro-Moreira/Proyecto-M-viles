@@ -13,10 +13,10 @@
         - Métodos
 4. Instalación y Configuración
 5. Uso
-    - [AuthService]
-    - [CalculationService]
-    - [ChatService]
-6. [Capturas de Pantalla]
+    - AuthService
+    - CalculationService
+    - ChatService
+6. Capturas de Pantalla
 7. [Contribuciones]
 8. [Licencia]
 
