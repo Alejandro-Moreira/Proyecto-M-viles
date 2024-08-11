@@ -26,6 +26,38 @@ class _UserManagementPageState extends State<UserManagementPage> {
     }
   }
 
+  Future<void> _addUser(String nombre, String apellido, String email, String password, BuildContext context) async {
+    try {
+      // Crear el usuario en Firebase Auth
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Agregar el usuario a Firestore en la colección 'users'
+      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        'nombre': nombre,
+        'apellido': apellido,
+        'email': email,
+        'role': 'Usuario', // Rol predeterminado
+        'active': true,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Usuario agregado exitosamente.'),
+        ),
+      );
+    } catch (e) {
+      logger.i('Error al agregar el usuario: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error al agregar el usuario.'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +94,8 @@ class _UserManagementPageState extends State<UserManagementPage> {
             bool isActive = user['active'];
 
             return ListTile(
-              title: Text(user['email']),
+              title: Text('${user['nombre']} ${user['apellido']}'),
+              subtitle: Text(user['email']),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -92,26 +125,22 @@ class _UserManagementPageState extends State<UserManagementPage> {
     );
   }
 
-  Future<bool?> _confirmDeletion(BuildContext context) async {
-    return showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Confirmar Eliminación'),
-          content: const Text('¿Estás seguro de que deseas eliminar este usuario?'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancelar'),
-              onPressed: () => Navigator.of(context).pop(false),
-            ),
-            TextButton(
-              child: const Text('Eliminar'),
-              onPressed: () => Navigator.of(context).pop(true),
-            ),
-          ],
-        );
-      },
-    );
+  Future<void> _toggleUserStatus(String userId, bool isActive) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({'active': !isActive});
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Estado del usuario actualizado.'),
+        ),
+      );
+    } catch (e) {
+      logger.i('Error al actualizar el estado del usuario: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error al actualizar el estado del usuario.'),
+        ),
+      );
+    }
   }
 
   Future<void> _deleteUser(String userId, BuildContext context) async {
@@ -133,7 +162,6 @@ class _UserManagementPageState extends State<UserManagementPage> {
         ),
       );
     } catch (e) {
-      // Manejo de errores, puedes mostrar un mensaje al usuario
       logger.i('Error al eliminar el usuario: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -156,22 +184,26 @@ class _UserManagementPageState extends State<UserManagementPage> {
     }
   }
 
-  Future<void> _toggleUserStatus(String userId, bool isActive) async {
-    try {
-      await FirebaseFirestore.instance.collection('users').doc(userId).update({'active': !isActive});
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Estado del usuario actualizado.'),
-        ),
-      );
-    } catch (e) {
-      logger.i('Error al actualizar el estado del usuario: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Error al actualizar el estado del usuario.'),
-        ),
-      );
-    }
+  Future<bool?> _confirmDeletion(BuildContext context) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Confirmar Eliminación'),
+          content: const Text('¿Estás seguro de que deseas eliminar este usuario?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancelar'),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+            TextButton(
+              child: const Text('Eliminar'),
+              onPressed: () => Navigator.of(context).pop(true),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _showAddUserDialog(BuildContext context) {
@@ -231,37 +263,5 @@ class _UserManagementPageState extends State<UserManagementPage> {
         );
       },
     );
-  }
-
-  Future<void> _addUser(String nombre, String apellido, String email, String password, BuildContext context) async {
-    try {
-      // Crear el usuario en Firebase Auth
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      // Agregar el usuario a Firestore en la colección 'users'
-      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
-        'nombre': nombre,
-        'apellido': apellido,
-        'email': email,
-        'role': 'Usuario', // Rol predeterminado
-        'active': true,
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Usuario agregado exitosamente.'),
-        ),
-      );
-    } catch (e) {
-      logger.i('Error al agregar el usuario: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Error al agregar el usuario.'),
-        ),
-      );
-    }
   }
 }
