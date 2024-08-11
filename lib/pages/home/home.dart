@@ -97,46 +97,49 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void _updateMarkers(List<QueryDocumentSnapshot> docs) {
-    setState(() {
-      _markers = docs.map((doc) {
-        var data = doc.data() as Map<String, dynamic>;
-        if (data['latitude'] != null && data['longitude'] != null) {
-          return Marker(
-            width: 80.0,
-            height: 80.0,
-            point: LatLng(data['latitude'], data['longitude']),
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text(data['name'] ?? 'Usuario'),
-                      content: Text(data['email'] ?? ''),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('Cerrar'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: const Icon(Icons.location_on, color: Colors.red),
-            ),
-          );
-        }
-        return null;
-      }).whereType<Marker>().toList();
+void _updateMarkers(List<QueryDocumentSnapshot> docs) {
+  setState(() {
+    _markers = docs.map((doc) {
+      var data = doc.data() as Map<String, dynamic>;
+      if (data['latitude'] != null && data['longitude'] != null) {
+        return Marker(
+          width: 80.0,
+          height: 80.0,
+          point: LatLng(data['latitude'], data['longitude']),
+          child: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(data['name'] ?? 'Usuario'),
+                    content: Text(
+                      '${data['nombre'] ?? 'Nombre no disponible'} ${data['apellido'] ?? 'Apellido no disponible'}'
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Cerrar'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: const Icon(Icons.location_on, color: Colors.red),
+          ),
+        );
+      }
+      return null;
+    }).whereType<Marker>().toList();
 
-      _polylines = _createPolylines(_markers.map((marker) => marker.point).toList());
-      _area = _calculatePolygonArea(_markers.map((marker) => marker.point).toList());
-    });
-  }
+    _polylines = _createPolylines(_markers.map((marker) => marker.point).toList());
+    _area = _calculatePolygonArea(_markers.map((marker) => marker.point).toList());
+  });
+}
+
 
   List<Polyline> _createPolylines(List<LatLng> points) {
     List<Polyline> polylines = [];

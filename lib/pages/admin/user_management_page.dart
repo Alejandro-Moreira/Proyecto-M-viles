@@ -177,6 +177,8 @@ class _UserManagementPageState extends State<UserManagementPage> {
   void _showAddUserDialog(BuildContext context) {
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController _nombreController = TextEditingController();
+    final TextEditingController _apellidoController = TextEditingController();
 
     showDialog(
       context: context,
@@ -186,6 +188,14 @@ class _UserManagementPageState extends State<UserManagementPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              TextField(
+                controller: _nombreController,
+                decoration: const InputDecoration(labelText: 'Nombre'),
+              ),
+              TextField(
+                controller: _apellidoController,
+                decoration: const InputDecoration(labelText: 'Apellido'),
+              ),
               TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Correo'),
@@ -208,6 +218,8 @@ class _UserManagementPageState extends State<UserManagementPage> {
               child: const Text('Agregar'),
               onPressed: () async {
                 await _addUser(
+                  _nombreController.text,
+                  _apellidoController.text,
                   _emailController.text,
                   _passwordController.text,
                   context,
@@ -221,7 +233,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
     );
   }
 
-  Future<void> _addUser(String email, String password, BuildContext context) async {
+  Future<void> _addUser(String nombre, String apellido, String email, String password, BuildContext context) async {
     try {
       // Crear el usuario en Firebase Auth
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -231,6 +243,8 @@ class _UserManagementPageState extends State<UserManagementPage> {
 
       // Agregar el usuario a Firestore en la colección 'users'
       await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        'nombre': nombre,
+        'apellido': apellido,
         'email': email,
         'role': 'Usuario', // Rol predeterminado
         'active': true,

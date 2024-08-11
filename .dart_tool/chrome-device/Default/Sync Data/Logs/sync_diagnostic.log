@@ -38,3 +38,100 @@
 2024-08-11T16:37:03.841Z P:33460 T:29292] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
 2024-08-11T16:37:11.684Z P:33460 T:29292] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
 2024-08-11T16:37:24.560Z P:33460 T:29292] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:28:55.303Z P:12248 T:8484] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T17:28:55.663Z P:12248 T:13028] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T17:28:55.840Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:28:55.921Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:28:57.558Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:29:00.804Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:29:08.479Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:29:24.170Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:29:54.141Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:30:50.932Z P:12248 T:8484] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:51:47.529Z P:2828 T:11568] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T17:51:48.037Z P:2828 T:26684] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T17:51:48.421Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:51:48.463Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:51:50.124Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:51:53.527Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:52:00.279Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:52:14.763Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:52:40.521Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:53:40.901Z P:2828 T:11568] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:55:52.852Z P:14108 T:28116] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T17:55:53.079Z P:14108 T:3188] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T17:55:53.211Z P:14108 T:28116] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:55:53.251Z P:14108 T:28116] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:55:54.942Z P:14108 T:28116] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:55:58.282Z P:14108 T:28116] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:56:05.651Z P:14108 T:28116] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T17:56:20.218Z P:14108 T:28116] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:04:31.370Z P:29048 T:26252] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:04:31.568Z P:29048 T:22348] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:04:31.758Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:04:31.799Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:04:33.585Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:04:36.875Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:04:43.444Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:04:58.566Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:05:29.462Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:06:23.280Z P:29048 T:26252] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:08:17.310Z P:23852 T:14432] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:08:17.525Z P:23852 T:5104] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:08:17.644Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:08:17.673Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:08:19.671Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:08:23.691Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:08:30.821Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:08:46.095Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:09:11.993Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:10:13.887Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:12:21.630Z P:23852 T:14432] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:14:18.426Z P:25260 T:7072] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:14:18.604Z P:25260 T:4036] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:14:18.747Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:14:18.821Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:14:20.764Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:14:24.707Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:14:32.613Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:14:45.774Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:15:12.380Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:16:13.546Z P:25260 T:7072] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:18:06.085Z P:22424 T:13892] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:18:06.299Z P:22424 T:22836] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:18:06.491Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:18:06.523Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:18:08.554Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:18:11.965Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:18:19.818Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:18:33.164Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:19:03.767Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:19:57.309Z P:22424 T:13892] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:21:44.763Z P:20296 T:28748] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:21:45.006Z P:20296 T:27032] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:21:45.245Z P:20296 T:28748] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:21:46.957Z P:20296 T:28748] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:21:50.621Z P:20296 T:28748] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:21:58.445Z P:20296 T:28748] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:22:11.958Z P:20296 T:28748] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:22:38.678Z P:20296 T:28748] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:26:37.098Z P:16956 T:1904] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:26:37.330Z P:16956 T:5372] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:26:37.536Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:26:37.580Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:26:39.610Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:26:43.240Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:26:50.204Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:27:03.770Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:27:32.051Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:28:30.632Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:30:37.535Z P:16956 T:1904] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:33:11.383Z P:15796 T:20336] SyncServiceImpl::Initialize,SyncState after the account was authenticated: FeatureNotRequestedNotSetup
+2024-08-11T18:33:11.629Z P:15796 T:25320] SyncManagerImpl::ConfigureSyncer,Types to download: Encryption Keys
+2024-08-11T18:33:11.888Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:33:11.959Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:33:13.751Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:33:17.619Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:33:25.053Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:33:39.578Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
+2024-08-11T18:34:05.400Z P:15796 T:20336] SyncServiceImpl::CredentialsChanged,Empty token for EdgeSyncScopeNew
