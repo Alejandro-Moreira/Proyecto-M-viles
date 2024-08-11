@@ -17,8 +17,8 @@
     - CalculationService
     - ChatService
 6. Capturas de Pantalla
-7. [Contribuciones]
-8. [Licencia]
+7. Contribuciones
+8. Licencia
 
 ## **Descripción del Proyecto**
 
