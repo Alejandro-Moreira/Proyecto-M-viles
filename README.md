@@ -1,5 +1,7 @@
 # **MapRealTime App**
 
+
+ 
 ## **Índice**
 
 1. Descripción del Proyecto
@@ -23,6 +25,9 @@
 ## **Descripción del Proyecto**
 
 **MapRealTime** es una aplicación diseñada para proporcionar funcionalidades de mensajería y cálculo basado en la geolocalización. Utiliza Firebase para la autenticación, la gestión de mensajes y el almacenamiento en tiempo real de datos. El administrador puede realizar cálculos sobre distancias y áreas utilizando ubicaciones geográficas de acuerdo a  la ubicación de cada Minero.
+
+## **VIDEO DE FUNCIONAMIENTO**
+https://youtu.be/oyrO27aspD8
 
 ## **Características**
 
