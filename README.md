@@ -25,10 +25,7 @@
 6. Uso
     - AuthService
     - CalculationService
-    - ChatService
 7. Capturas de Pantalla
-8. Contribuciones
-9. Licencia
 
 ## **Descripción del Proyecto**
 
@@ -55,7 +52,6 @@ Gestiona la autenticación de los usuarios y su redirección según su rol.
 Inicia sesión con las credenciales proporcionadas.
 
 ```dart
-dartCopiar código
 Future<void> signin({
   required String email,
   required String password,
@@ -113,14 +109,6 @@ Maneja la gestión de ubicaciones de usuarios.
       bool isLocation = false,
       GeoPoint? location,
     });
-    ```
-    
-- **deleteMessage**
-    
-    Elimina un mensaje específico del chat.
-    
-    ```dart
-    Future<void> deleteMessage(String messageId);
     ```
     
 - **updateUserLocation**
@@ -203,31 +191,16 @@ Maneja la gestión de ubicaciones de usuarios.
     
 
 ### **ChatService**
-
-- **Obtener Mensajes:**
-    
-    ```dart
-    ChatService().getMessages().listen((QuerySnapshot snapshot) {
-      // Manejar los mensajes recibidos
-    });
-    ```
     
 - **Enviar Mensaje a la base de Datos de Firebase:**
     
     ```dart
-    dartCopiar código
     ChatService().sendMessage(
       'Hello World!',
       'user123',
       isLocation: true,
       location: GeoPoint(37.7749, -122.4194),
     );
-    ```
-    
-- **Eliminar Mensaje:**
-    
-    ```dart
-    ChatService().deleteMessage('messageId123');
     ```
     
 - **Actualizar Ubicación del Usuario:**
